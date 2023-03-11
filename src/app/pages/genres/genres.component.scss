@@ -1,0 +1,19 @@
+@import '../../../styles/colors';
+.genre-link {
+    display: flex;
+    width: 100%;
+    color: $bgColor;
+    padding: 5px;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: hsla(33, 100%, 53%, 1);
+
+background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+
+}

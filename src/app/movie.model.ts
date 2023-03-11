@@ -26,11 +26,6 @@ export interface MovieDto {
     total_pages: number;
 }
 
-export interface Genre {
-    id: number;
-    name: string;
-}
-
 export interface MovieVideoDto {
     id: number;
     results: MovieVideo[];
@@ -87,4 +82,13 @@ export interface Cast {
     order?: number;
     department?: string;
     job?: string;
+}
+
+export interface Genres {
+    genres: Genre[];
+}
+
+export interface Genre {
+    id: number;
+    name: string;
 }

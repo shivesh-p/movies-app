@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 import { Movie, MovieCredits, MovieDto, MovieVideoDto } from '../movie.model';
-import { MovieImages } from './../movie.model';
+import { Genres, MovieImages } from './../movie.model';
 
 @Injectable({
     providedIn: 'root',
@@ -12,7 +12,6 @@ export class MoviesService {
     apiKey: string = 'cb53e808c5e504b2a243e7fe5504b187';
     constructor(private http: HttpClient) {}
     getMovies(type: string) {
-        const httpParams = new HttpParams();
         return this.http.get<MovieDto>(`${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`).pipe(
             switchMap((response) => {
                 return of(response.results);
@@ -45,5 +44,24 @@ export class MoviesService {
     }
     getMovieCredits(id: string) {
         return this.http.get<MovieCredits>(`${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`);
+    }
+
+    getMovieGenres() {
+        return this.http.get<Genres>(`${this.baseUrl}/genre/movie/list?api_key=${this.apiKey}&language=en-US`).pipe(
+            switchMap((response) => {
+                return of(response.genres);
+            })
+        );
+    }
+    getMoviesByGenre(genreId: number, page: number) {
+        return this.http
+            .get<MovieDto>(
+                `${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.apiKey}&language=en-US`
+            )
+            .pipe(
+                switchMap((response) => {
+                    return of(response.results);
+                })
+            );
     }
 }
