@@ -11,13 +11,14 @@ import { AppComponent } from './app.component';
 import { ItemBannerComponent } from './components/item-banner/item-banner.component';
 import { ItemComponent } from './components/item/item.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { GenresComponent } from './pages/genres/genres.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { VideoEmbedComponent } from './pages/video-embed/video-embed.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { GenresComponent } from './pages/genres/genres.component';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
     declarations: [
         AppComponent,
@@ -41,6 +42,7 @@ import { GenresComponent } from './pages/genres/genres.component';
         BrowserAnimationsModule,
         ImageModule,
         CarouselModule,
+        InputTextModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

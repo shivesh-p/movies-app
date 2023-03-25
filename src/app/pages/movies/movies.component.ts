@@ -13,6 +13,7 @@ export class MoviesComponent {
     totalCount: number | null = null;
     movies: Movie[] | null = null;
     genreId: number | null = null;
+    searchValue: string | null = null;
     constructor(private movieService: MoviesService, private route: ActivatedRoute) {}
     ngOnInit(): void {
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -26,8 +27,8 @@ export class MoviesComponent {
             }
         });
     }
-    getMoviesAccordingToPage(page: number) {
-        this.movieService.searchMovies(page).subscribe((movies) => {
+    getMoviesAccordingToPage(page: number, searchValue?: string) {
+        this.movieService.searchMovies(page, searchValue).subscribe((movies) => {
             this.movies = movies;
             //this.totalCount = movies.length;
         });
@@ -48,7 +49,17 @@ export class MoviesComponent {
         if (this.genreId) {
             this.getMoviesByGenre(this.genreId, pageNo);
         } else {
-            this.getMoviesAccordingToPage(pageNo);
+            if (this.searchValue) {
+                this.getMoviesAccordingToPage(pageNo, this.searchValue);
+            } else {
+                this.getMoviesAccordingToPage(pageNo);
+            }
+        }
+    }
+
+    searchMovies() {
+        if (this.searchValue) {
+            this.getMoviesAccordingToPage(1, this.searchValue);
         }
     }
 }

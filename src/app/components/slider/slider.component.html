@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="slider">
     <ng-container *ngFor="let movie of moviesList; let i = index">
         <div class="slide" *ngIf="i == currentSlideIndex" @slideFade>
@@ -6,6 +7,7 @@
 
                 <!-- <img class="slide-bg-image" src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}" alt="" /> -->
             </div>
+
             <div class="slide-pane">
                 <h2 class="name">{{ movie.title }}</h2>
                 <div class="meta">

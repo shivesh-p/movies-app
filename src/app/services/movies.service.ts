@@ -19,12 +19,16 @@ export class MoviesService {
         );
     }
 
-    searchMovies(page: number) {
-        return this.http.get<MovieDto>(`${this.baseUrl}/movie/popular?page=${page}&api_key=${this.apiKey}`).pipe(
-            switchMap((response) => {
-                return of(response.results);
-            })
-        );
+    searchMovies(page: number, searchValue?: string) {
+        debugger;
+        const uri = searchValue ? '/search/movie' : '/movie/popular';
+        return this.http
+            .get<MovieDto>(`${this.baseUrl}${uri}?page=${page}&query=${searchValue}&api_key=${this.apiKey}`)
+            .pipe(
+                switchMap((response) => {
+                    return of(response.results);
+                })
+            );
     }
     getMovieDetail(id: string) {
         return this.http.get<Movie>(`${this.baseUrl}/movie/${id}?api_key=${this.apiKey}&language=en-US`);

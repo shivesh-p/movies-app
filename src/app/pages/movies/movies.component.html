@@ -1,4 +1,21 @@
+<!DOCTYPE html>
 <div class="container">
+    <div class="grid">
+        <div class="col-12">
+            <div class="p-fluid">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input
+                        type="text"
+                        pInputText
+                        placeholder="Search"
+                        (click)="searchMovies()"
+                        [(ngModel)]="searchValue"
+                    />
+                </span>
+            </div>
+        </div>
+    </div>
     <div class="grid">
         <div class="col-6 md:col-3 lg:col-3" *ngFor="let item of movies">
             <item [itemData]="item"></item>
