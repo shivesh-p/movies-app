@@ -1,1 +1,76 @@
-<p>showdetail works!</p>
+<ng-container *ngIf="show">
+    <app-slider [tvShowList]="[show]" [isBanner]="true" [isTvShowBanner]="true"></app-slider>
+    <p-tabView>
+        <p-tabPanel header="Overview">
+            <div class="grid">
+                <div class="col-12 md:col-3 lg:col-3">
+                    <img [src]="imageSizes.medium + show.poster_path" alt="" />
+                </div>
+                <div class="col-12 md:col-9 lg:col-9">
+                    <h2>Overview</h2>
+                    <p class="overview">
+                        {{ show.overview }}
+                    </p>
+                    <div class="stat">
+                        <div class="label">Release Date:</div>
+                        <div class="value">{{ show.first_air_date | date : 'dd.MM.yyyy' }}</div>
+                    </div>
+
+                    <div class="stat">
+                        <div class="label">Total Seasons:</div>
+                        <div class="value">{{ show.number_of_seasons }}</div>
+                    </div>
+                    <div class="stat">
+                        <div class="label">Total Episodes:</div>
+                        <div class="value">{{ show.number_of_episodes }}</div>
+                    </div>
+                    <div class="stat">
+                        <div class="label">Status:</div>
+                        <div class="value">{{ show.status }}</div>
+                    </div>
+                    <div class="stat">
+                        <div class="label">Status:</div>
+                        <div class="value">
+                            <span *ngFor="let genre of show.genres">{{ genre.name }} </span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="label">Language:</div>
+                        <div class="value">{{ show.original_language | uppercase }}</div>
+                    </div>
+                </div>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Videos">
+            <div class="grid">
+                <ng-container *ngFor="let item of movieVideos">
+                    <div class="col-12 md:col-4 lg:col-4">
+                        <app-video-embed [key]="item.key" [site]="item.site"></app-video-embed>
+                    </div>
+                </ng-container>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Photos">
+            <div class="grid">
+                <ng-container *ngFor="let image of movieImages?.backdrops">
+                    <div class="col-12 md:col-4 lg:col-4">
+                        <p-image
+                            [src]="imageSizes.large + image.file_path"
+                            [preview]="true"
+                            alt="Image"
+                            width="100%"
+                        ></p-image>
+                    </div>
+                </ng-container>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+    <p-carousel [value]="movieCredits.cast" [numVisible]="5" [numScroll]="1" *ngIf="movieCredits">
+        <ng-template let-actor pTemplate="item">
+            <div class="actor">
+                <img [src]="imageSizes.medium + actor.profile_path" alt="" />
+                <span>{{ actor.name }}</span>
+            </div>
+        </ng-template>
+    </p-carousel>
+</ng-container>

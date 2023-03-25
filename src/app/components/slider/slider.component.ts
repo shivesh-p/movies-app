@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, Input } from '@angular/core';
 import { Movie } from 'src/app/movie.model';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
+import { TvShows } from '../../tvshows.model';
 
 @Component({
     selector: 'app-slider',
@@ -16,8 +17,10 @@ import { IMAGES_SIZES } from '../../constants/images-sizes';
     ],
 })
 export class SliderComponent {
-    @Input() moviesList: Movie[];
+    @Input() moviesList?: Movie[];
+    @Input() tvShowList?: TvShows[];
     @Input() isBanner: boolean = false;
+    @Input() isTvShowBanner: boolean = false;
     currentSlideIndex = 0;
     readonly imageSize = IMAGES_SIZES;
     ngOnInit(): void {

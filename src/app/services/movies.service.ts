@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 import { Movie, MovieCredits, MovieDto, MovieVideoDto } from '../movie.model';
-import { TvShowsDto } from '../tvshows.model';
+import { TvShows, TvShowsDto } from '../tvshows.model';
 import { Genres, MovieImages } from './../movie.model';
 
 @Injectable({
@@ -34,9 +34,22 @@ export class MoviesService {
     getMovieDetail(id: string) {
         return this.http.get<Movie>(`${this.baseUrl}/movie/${id}?api_key=${this.apiKey}&language=en-US`);
     }
+
+    getTvShowDetail(id: string) {
+        return this.http.get<TvShows>(`${this.baseUrl}/tv/${id}?api_key=${this.apiKey}&language=en-US`);
+    }
     getMovieDetailVideo(id: string) {
         return this.http
             .get<MovieVideoDto>(`${this.baseUrl}/movie/${id}/videos?api_key=${this.apiKey}&language=en-US`)
+            .pipe(
+                switchMap((response) => {
+                    return of(response.results);
+                })
+            );
+    }
+    getTvShowVideo(id: string) {
+        return this.http
+            .get<MovieVideoDto>(`${this.baseUrl}/tv/${id}/videos?api_key=${this.apiKey}&language=en-US`)
             .pipe(
                 switchMap((response) => {
                     return of(response.results);
@@ -49,6 +62,13 @@ export class MoviesService {
     }
     getMovieCredits(id: string) {
         return this.http.get<MovieCredits>(`${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`);
+    }
+
+    getTvShowImages(id: string) {
+        return this.http.get<MovieImages>(`${this.baseUrl}/tv/${id}/images?api_key=${this.apiKey}`);
+    }
+    getTvShowCredits(id: string) {
+        return this.http.get<MovieCredits>(`${this.baseUrl}/tv/${id}/credits?api_key=${this.apiKey}`);
     }
 
     getMovieGenres() {

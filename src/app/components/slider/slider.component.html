@@ -1,30 +1,61 @@
 <!DOCTYPE html>
 <div class="slider">
-    <ng-container *ngFor="let movie of moviesList; let i = index">
-        <div class="slide" *ngIf="i == currentSlideIndex" @slideFade>
-            <div class="slide-bg">
-                <img class="slide-bg-image" [src]="imageSize.large + movie.backdrop_path" alt="" />
+    <ng-container *ngIf="isTvShowBanner">
+        <ng-container *ngFor="let movie of tvShowList; let i = index">
+            <div class="slide" *ngIf="i == currentSlideIndex" @slideFade>
+                <div class="slide-bg">
+                    <img class="slide-bg-image" [src]="imageSize.large + movie.backdrop_path" alt="" />
 
-                <!-- <img class="slide-bg-image" src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}" alt="" /> -->
-            </div>
+                    <!-- <img class="slide-bg-image" src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}" alt="" /> -->
+                </div>
 
-            <div class="slide-pane">
-                <h2 class="name">{{ movie.title }}</h2>
-                <div class="meta">
-                    <div class="info">
-                        <span class="rating">
-                            <span class="mate-icon">star</span>
-                            <span class="rating-value">{{ movie.vote_average }} </span>
-                            <span>/10</span>
-                        </span>
-                        <span>{{ movie.vote_count }} Reviews</span>
-                        <span>{{ movie.release_date | date : 'yyyy' }}</span>
+                <div class="slide-pane">
+                    <h2 class="name">{{ movie.name }}</h2>
+                    <div class="meta">
+                        <div class="info">
+                            <span class="rating">
+                                <span class="mate-icon">star</span>
+                                <span class="rating-value">{{ movie.vote_average }} </span>
+                                <span>/10</span>
+                            </span>
+                            <span>{{ movie.vote_count }} Reviews</span>
+                            <span>{{ movie.first_air_date | date : 'yyyy' }}</span>
+                        </div>
+                    </div>
+                    <div class="desc mt-6">
+                        {{ movie.overview }}
                     </div>
                 </div>
-                <div class="desc mt-6">
-                    {{ movie.overview }}
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!isTvShowBanner">
+        <ng-container *ngFor="let movie of moviesList; let i = index">
+            <div class="slide" *ngIf="i == currentSlideIndex" @slideFade>
+                <div class="slide-bg">
+                    <img class="slide-bg-image" [src]="imageSize.large + movie.backdrop_path" alt="" />
+
+                    <!-- <img class="slide-bg-image" src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}" alt="" /> -->
+                </div>
+
+                <div class="slide-pane">
+                    <h2 class="name">{{ movie.title }}</h2>
+                    <div class="meta">
+                        <div class="info">
+                            <span class="rating">
+                                <span class="mate-icon">star</span>
+                                <span class="rating-value">{{ movie.vote_average }} </span>
+                                <span>/10</span>
+                            </span>
+                            <span>{{ movie.vote_count }} Reviews</span>
+                            <span>{{ movie.release_date | date : 'yyyy' }}</span>
+                        </div>
+                    </div>
+                    <div class="desc mt-6">
+                        {{ movie.overview }}
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
     </ng-container>
 </div>
