@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Paginator } from 'primeng/paginator/paginator';
 import { take } from 'rxjs';
 import { Movie } from 'src/app/movie.model';
 import { MoviesService } from '../../services/movies.service';
@@ -10,6 +11,7 @@ import { MoviesService } from '../../services/movies.service';
     styleUrls: ['./movies.component.css'],
 })
 export class MoviesComponent {
+    @ViewChild('paginator') paginator: Paginator;
     totalCount: number | null = null;
     movies: Movie[] | null = null;
     genreId: number | null = null;
@@ -60,6 +62,7 @@ export class MoviesComponent {
     searchMovies() {
         if (this.searchValue) {
             this.getMoviesAccordingToPage(1, this.searchValue);
+            this.paginator.changePageToFirst(null);
         }
     }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 import { Movie, MovieCredits, MovieDto, MovieVideoDto } from '../movie.model';
+import { TvShowsDto } from '../tvshows.model';
 import { Genres, MovieImages } from './../movie.model';
 
 @Injectable({
@@ -62,6 +63,17 @@ export class MoviesService {
             .get<MovieDto>(
                 `${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.apiKey}&language=en-US`
             )
+            .pipe(
+                switchMap((response) => {
+                    return of(response.results);
+                })
+            );
+    }
+
+    getTvShows(pageNo: number, searchValue?: string) {
+        const uri = searchValue ? '/search/tv' : '/tv/popular';
+        return this.http
+            .get<TvShowsDto>(`${this.baseUrl}${uri}?api_key=${this.apiKey}&page=${pageNo}&query=${searchValue}`)
             .pipe(
                 switchMap((response) => {
                     return of(response.results);

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <div class="container">
     <div class="grid">
         <div class="col-12">
@@ -9,7 +8,7 @@
                         type="text"
                         pInputText
                         placeholder="Search"
-                        (click)="searchMovies()"
+                        (click)="searchTvShows()"
                         [(ngModel)]="searchValue"
                     />
                 </span>
@@ -17,9 +16,9 @@
         </div>
     </div>
     <div class="grid">
-        <div class="col-6 md:col-3 lg:col-3" *ngFor="let item of movies">
-            <item [itemData]="item"></item>
+        <div class="col-6 md:col-3 lg:col-3" *ngFor="let item of shows">
+            <shows-item [itemData]="item"></shows-item>
         </div>
     </div>
 </div>
-<p-paginator #paginator [rows]="20" [totalRecords]="10000" (onPageChange)="paginate($event)"></p-paginator>
+<p-paginator #paginator [rows]="20" [totalRecords]="10000" (onPageChange)="paginateShows($event)"></p-paginator>

@@ -19,6 +19,9 @@ import { VideoEmbedComponent } from './pages/video-embed/video-embed.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { ShowsComponent } from './pages/shows/shows.component';
+import { ShowsitemComponent } from './components/showsitem/showsitem.component';
+import { ShowdetailComponent } from './pages/showdetail/showdetail.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -32,6 +35,9 @@ import { InputTextModule } from 'primeng/inputtext';
         MovieComponent,
         VideoEmbedComponent,
         GenresComponent,
+        ShowsComponent,
+        ShowsitemComponent,
+        ShowdetailComponent,
     ],
     imports: [
         BrowserModule,
