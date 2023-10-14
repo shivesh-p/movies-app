@@ -21,7 +21,7 @@ export class MoviesService {
     }
 
     searchMovies(page: number, searchValue?: string) {
-        debugger;
+        //debugger;
         const uri = searchValue ? '/search/movie' : '/movie/popular';
         return this.http
             .get<MovieDto>(`${this.baseUrl}${uri}?page=${page}&query=${searchValue}&api_key=${this.apiKey}`)

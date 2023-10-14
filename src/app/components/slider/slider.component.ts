@@ -17,6 +17,7 @@ import { TvShows } from '../../tvshows.model';
     ],
 })
 export class SliderComponent {
+    //this component deals with the slider used for showing the movies
     @Input() moviesList?: Movie[];
     @Input() tvShowList?: TvShows[];
     @Input() isBanner: boolean = false;
